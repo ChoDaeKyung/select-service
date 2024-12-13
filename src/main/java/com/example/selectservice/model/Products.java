@@ -1,4 +1,4 @@
-package com.example.tobi.selectservice.model;
+package com.example.selectservice.model;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.example.tobi.selectservice.dto;
+package com.example.selectservice.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,8 +9,8 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class ProductRequestDTO {
-    private int orderNumber;
+public class CartProductRequestDTO {
+    private int id;
     private String name;
     private String category;
     private int price;

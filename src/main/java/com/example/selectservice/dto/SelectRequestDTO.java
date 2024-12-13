@@ -1,10 +1,9 @@
-package com.example.tobi.selectservice.dto;
+package com.example.selectservice.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.annotation.Id;
 
 import java.util.List;
 

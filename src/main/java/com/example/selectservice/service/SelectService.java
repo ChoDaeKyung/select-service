@@ -1,11 +1,11 @@
-package com.example.tobi.selectservice.service;
+package com.example.selectservice.service;
 
-import com.example.tobi.selectservice.client.FileClient;
-import com.example.tobi.selectservice.dto.GetSelectProductResponseDTO;
-import com.example.tobi.selectservice.dto.ProductRequestDTO;
-import com.example.tobi.selectservice.dto.SelectRequestDTO;
-import com.example.tobi.selectservice.mapper.SelectMapper;
-import com.example.tobi.selectservice.model.Products;
+import com.example.selectservice.client.FileClient;
+import com.example.selectservice.dto.GetSelectProductResponseDTO;
+import com.example.selectservice.dto.ProductRequestDTO;
+import com.example.selectservice.dto.SelectRequestDTO;
+import com.example.selectservice.mapper.SelectMapper;
+import com.example.selectservice.model.Products;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

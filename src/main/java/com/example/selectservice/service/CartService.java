@@ -1,14 +1,11 @@
-package com.example.tobi.selectservice.service;
+package com.example.selectservice.service;
 
-import com.example.tobi.selectservice.client.FileClient;
-import com.example.tobi.selectservice.dto.CartProductRequestDTO;
-import com.example.tobi.selectservice.dto.InsertCartRequestDTO;
-import com.example.tobi.selectservice.dto.ProductRequestDTO;
-import com.example.tobi.selectservice.mapper.CartMapper;
+import com.example.selectservice.dto.CartProductRequestDTO;
+import com.example.selectservice.dto.InsertCartRequestDTO;
+import com.example.selectservice.mapper.CartMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

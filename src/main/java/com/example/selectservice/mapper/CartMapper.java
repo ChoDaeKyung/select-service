@@ -1,8 +1,6 @@
-package com.example.tobi.selectservice.mapper;
+package com.example.selectservice.mapper;
 
-import com.example.tobi.selectservice.dto.CartProductRequestDTO;
-import com.example.tobi.selectservice.dto.InsertCartRequestDTO;
-import com.example.tobi.selectservice.dto.ProductRequestDTO;
+import com.example.selectservice.dto.CartProductRequestDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

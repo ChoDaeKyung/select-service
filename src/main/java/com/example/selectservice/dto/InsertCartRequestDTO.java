@@ -1,4 +1,4 @@
-package com.example.tobi.selectservice.dto;
+package com.example.selectservice.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

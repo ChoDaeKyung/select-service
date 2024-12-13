@@ -2,7 +2,7 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.tobi.selectservice.mapper.SelectMapper">
+<mapper namespace="com.example.selectservice.mapper.SelectMapper">
 
     <insert id="insertSelect" parameterType="java.util.List">
         INSERT INTO productpay(orderNumber, name, category, price, sectionId, buyer)
@@ -19,7 +19,7 @@
         </foreach>
     </insert>
 
-    <insert id="insertCompleteProduct" parameterType="com.example.tobi.selectservice.dto.SelectRequestDTO">
+    <insert id="insertCompleteProduct" parameterType="com.example.selectservice.dto.SelectRequestDTO">
         INSERT INTO completeproductpay(completeProduct, totalPrice,orderId) VALUES (#{completeProduct}, #{totalPrice}, #{orderId})
     </insert>
 
@@ -27,7 +27,7 @@
         SELECT id from completeproductpay WHERE orderId = #{orderId}
     </select>
 
-    <select id="getSelectProducts" resultType="com.example.tobi.selectservice.model.Products">
+    <select id="getSelectProducts" resultType="com.example.selectservice.model.Products">
         SELECT name,category,price,imagePath FROM products
     </select>
 
