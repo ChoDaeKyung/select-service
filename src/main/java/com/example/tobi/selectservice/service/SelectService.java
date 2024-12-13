@@ -9,7 +9,6 @@ import com.example.tobi.selectservice.model.Products;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -23,15 +22,14 @@ public class SelectService {
 
     public void insertSelect(SelectRequestDTO selectRequestDTO) {
         // SelectRequestDTO 안의 모든 ProductRequestDTO를 추출
-        List<ProductRequestDTO> allProducts = new ArrayList<>();
-        selectRequestDTO.getProductsList().forEach(allProducts::addAll); // 모든 카테고리의 상품 리스트를 합침
+        List<ProductRequestDTO> allProducts = selectRequestDTO.getProductsList();
         String completeProduct = selectRequestDTO.getCompleteProduct();
         int totalPrice = selectRequestDTO.getTotalPrice();
         String orderId = selectRequestDTO.getOrderId();
 
         selectMapper.insertCompleteProduct(completeProduct, totalPrice, orderId);
 
-        int id = selectMapper.selectOrderIdById(orderId);
+        int id = selectMapper.selectIdByOrderId(orderId);
 
 
         allProducts.forEach(product -> product.setOrderNumber(id));

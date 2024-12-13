@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.tobi.selectservice.mapper.CartMapper">
+
+    <insert id="insertProduct" parameterType="java.util.List">
+        INSERT INTO productcart(id, name, category, price, buyer)
+        VALUES
+        <foreach collection="list" item="product" separator=",">
+            (
+            #{product.id},
+            #{product.name},
+            #{product.category},
+            #{product.price},
+            #{product.buyer}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertCompleteProduct" parameterType="com.example.tobi.selectservice.dto.SelectRequestDTO">
+        INSERT INTO completeproductcart(name, totalPrice, buyer, productId) VALUES (#{name}, #{totalPrice}, #{buyer}, #{productId})
+    </insert>
+
+    <select id="selectIdByproductId" parameterType="String" resultType="Integer">
+        SELECT id from completeproductcart WHERE productId = #{productId}
+    </select>
+</mapper>

@@ -5,14 +5,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-public class ProductRequestDTO {
-    private int orderNumber;
+public class InsertCartRequestDTO {
+    private List<CartProductRequestDTO> productsList;
     private String name;
-    private String category;
-    private int price;
+    private int totalPrice;
     private String buyer;
+    private String productId;
 }

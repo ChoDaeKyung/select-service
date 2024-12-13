@@ -23,7 +23,7 @@
         INSERT INTO completeproductpay(completeProduct, totalPrice,orderId) VALUES (#{completeProduct}, #{totalPrice}, #{orderId})
     </insert>
 
-    <select id="selectOrderIdById" parameterType="String" resultType="Integer">
+    <select id="selectIdByOrderId" parameterType="String" resultType="Integer">
         SELECT id from completeproductpay WHERE orderId = #{orderId}
     </select>
 

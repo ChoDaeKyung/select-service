@@ -10,6 +10,6 @@ import java.util.List;
 public interface SelectMapper {
     void insertSelect(List<ProductRequestDTO> productRequestDTOList);
     void insertCompleteProduct(String completeProduct, int totalPrice, String orderId);
-    int selectOrderIdById(String orderId);
+    int selectIdByOrderId(String orderId);
     List<Products> getSelectProducts();
 }
