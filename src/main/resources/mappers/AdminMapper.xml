@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.selectservice.mapper.AdminMapper">
+
+    <insert id="addCompleteProduct" parameterType="com.example.selectservice.dto.AddCompleteProductRequestDTO">
+        INSERT INTO completeproducts (name, price, detail, imagePath)
+        VALUES (#{completeName}, #{price}, #{detail}, #{imagePath})
+    </insert>
+
+    <update id="addUsed" parameterType="com.example.selectservice.dto.UsedUpdateRequestDTO">
+        UPDATE products
+        SET used = CONCAT(IFNULL(used, ''), IF(used IS NULL OR used = '', '', ','), #{completeName})
+        WHERE name = #{name}
+    </update>
+
+</mapper>

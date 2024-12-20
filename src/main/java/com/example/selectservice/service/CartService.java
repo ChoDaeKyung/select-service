@@ -1,8 +1,8 @@
 package com.example.selectservice.service;
 
-import com.example.selectservice.dto.CartProductRequestDTO;
-import com.example.selectservice.dto.InsertCartRequestDTO;
+import com.example.selectservice.dto.*;
 import com.example.selectservice.mapper.CartMapper;
+import com.example.selectservice.mapper.MenuMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +13,7 @@ import java.util.List;
 public class CartService {
 
     private final CartMapper cartMapper;
+    private final MenuMapper menuMapper;
 
     public void insertCart(InsertCartRequestDTO insertCartRequestDTO) {
         List<CartProductRequestDTO> allProducts = insertCartRequestDTO.getProductsList();
@@ -30,4 +31,38 @@ public class CartService {
         cartMapper.insertProduct(allProducts);
     }
 
+    public void insertCompleteProductToCart(CompleteCartRequestDTO completeCartRequestDTO) {
+        String name = completeCartRequestDTO.getName();
+        int totalPrice = completeCartRequestDTO.getPrice();
+        String buyer = completeCartRequestDTO.getBuyer();
+        String productId = completeCartRequestDTO.getProductId();
+
+        cartMapper.insertCompleteProduct(name, totalPrice, buyer, productId);
+        int id = cartMapper.selectIdByproductId(productId);
+        List<GetDetailProductsDTO> productsByCompleteProduct = menuMapper.getProductsByCompleteProduct(name);
+
+        List<CartProductRequestDTO> cartProducts = productsByCompleteProduct.stream()
+                .map(product -> CartProductRequestDTO.builder()
+                        .id(id) // 조회된 CompleteProduct의 ID로 설정
+                        .name(product.getName())
+                        .category(product.getCategory())
+                        .price(product.getPrice())
+                        .buyer(buyer) // CompleteCartRequestDTO에서 가져온 구매자 정보로 설정
+                        .build())
+                .toList();
+
+        // 5. 변환된 CartProductRequestDTO 리스트를 DB에 삽입
+        cartMapper.insertProduct(cartProducts);
+    }
+
+    public CartResponseDTO getCartList(String nickName) {
+
+        List<CompleteCartResponseDTO> completeCartList = cartMapper.getCompleteCartList(nickName);
+        List<CartProductResponseDTO> cartProductList = cartMapper.getCartProductList(nickName);
+
+        return CartResponseDTO.builder()
+                .CompleteCartList(completeCartList)
+                .CartProductList(cartProductList)
+                .build();
+    }
 }

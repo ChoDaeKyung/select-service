@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.selectservice.mapper.MenuMapper">
+
+    <select id="getMenuList" resultType="com.example.selectservice.dto.GetMenuListResponseDTO">
+        SELECT name,price,detail,imagePath FROM completeproducts
+    </select>
+
+    <select id="getProductsByCompleteProduct" resultType="com.example.selectservice.dto.GetDetailProductsDTO">
+        SELECT name, category, price, imagePath
+        FROM products
+        WHERE used LIKE CONCAT('%,', #{name}, ',%')
+           OR used LIKE CONCAT(#{name}, ',%')
+           OR used LIKE CONCAT('%,', #{name})
+           OR used = #{name};
+    </select>
+
+</mapper>

@@ -25,4 +25,25 @@
     <select id="selectIdByproductId" parameterType="String" resultType="Integer">
         SELECT id from completeproductcart WHERE productId = #{productId}
     </select>
+
+    <select id="getCompleteCartList" resultType="com.example.selectservice.dto.CompleteCartResponseDTO">
+        SELECT
+            id,
+            name,
+            totalPrice
+        FROM completeproductcart
+        WHERE buyer = #{nickName}
+    </select>
+
+    <!-- CartProductResponseDTO 데이터 조회 -->
+    <select id="getCartProductList" resultType="com.example.selectservice.dto.CartProductResponseDTO">
+        SELECT
+            id,
+            name,
+            category,
+            price
+        FROM productcart
+        WHERE buyer = #{nickName}
+    </select>
+
 </mapper>
