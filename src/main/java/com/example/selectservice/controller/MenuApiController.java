@@ -1,8 +1,9 @@
 package com.example.selectservice.controller;
 
 import com.example.selectservice.dto.GetDetailProductsDTO;
+import com.example.selectservice.dto.GetCompleteProductsListResponseDTO;
 import com.example.selectservice.dto.GetMenuListResponseDTO;
-import com.example.selectservice.dto.GetSelectProductResponseDTO;
+import com.example.selectservice.dto.GetSideMenuListResponseDTO;
 import com.example.selectservice.service.MenuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +21,8 @@ public class MenuApiController {
     private final MenuService menuService;
 
     @GetMapping
-    public List<GetMenuListResponseDTO> getSelectProduct(){
-        List<GetMenuListResponseDTO> getMenuList = menuService.getMenuList();
+    public GetMenuListResponseDTO getMenuList(){
+        GetMenuListResponseDTO getMenuList = menuService.getMenuList();
         System.out.println("getMenuList : " + getMenuList);
         return getMenuList;
     }
@@ -31,6 +32,17 @@ public class MenuApiController {
         List<GetDetailProductsDTO> getProducts = menuService.getProductsByCompleteProduct(name);
         System.out.println("getProducts : " + getProducts);
         return getProducts;
+    }
+
+    @GetMapping("/getMenuListByName")
+    public GetCompleteProductsListResponseDTO getMenuListByName(@RequestParam String name){
+        return null;
+    }
+
+    @GetMapping("/getSideMenuByCategory")
+    public List<GetSideMenuListResponseDTO> getSideMenuByCategory(@RequestParam String category){
+        List<GetSideMenuListResponseDTO> getSideMenuByCategory = menuService.getSideMenuByCategory(category);
+        return getSideMenuByCategory;
     }
 
 }

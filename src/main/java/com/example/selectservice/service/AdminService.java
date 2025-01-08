@@ -1,9 +1,6 @@
 package com.example.selectservice.service;
 
-import com.example.selectservice.dto.AddCompleteProductDetailDto;
-import com.example.selectservice.dto.AddCompleteProductRequestDTO;
-import com.example.selectservice.dto.ProductRequestDTO;
-import com.example.selectservice.dto.UsedUpdateRequestDTO;
+import com.example.selectservice.dto.*;
 import com.example.selectservice.mapper.AdminMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,6 +28,14 @@ public class AdminService {
             // Call the mapper method to update the 'used' column in the database
             adminMapper.addUsed(usedUpdateRequestDTO);
         }
+    }
+
+    public void addProduct(AddProductRequestDTO requestDTO) {
+        adminMapper.addProduct(requestDTO);
+    }
+
+    public void addSideMenu(AddSideMenuRequestDTO requestDTO) {
+        adminMapper.addSideMenu(requestDTO);
     }
 
 }

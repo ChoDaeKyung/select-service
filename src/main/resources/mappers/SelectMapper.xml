@@ -5,7 +5,7 @@
 <mapper namespace="com.example.selectservice.mapper.SelectMapper">
 
     <insert id="insertSelect" parameterType="java.util.List">
-        INSERT INTO productpay(orderNumber, name, category, price, sectionId, buyer)
+        INSERT INTO product(orderNumber, name, category, price, sectionId, buyer)
         VALUES
         <foreach collection="list" item="product" separator=",">
             (

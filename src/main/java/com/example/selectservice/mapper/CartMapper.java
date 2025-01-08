@@ -3,6 +3,7 @@ package com.example.selectservice.mapper;
 import com.example.selectservice.dto.CartProductRequestDTO;
 import com.example.selectservice.dto.CartProductResponseDTO;
 import com.example.selectservice.dto.CompleteCartResponseDTO;
+import com.example.selectservice.dto.CustomProductsRequestDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,4 +16,5 @@ public interface CartMapper {
     int selectIdByproductId(String productId);
     List<CompleteCartResponseDTO> getCompleteCartList(@Param("nickName") String nickName);
     List<CartProductResponseDTO> getCartProductList(@Param("nickName") String nickName);
+    void insertCustomProducts(List<CustomProductsRequestDTO> customProducts);
 }

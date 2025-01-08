@@ -55,6 +55,15 @@ public class CartService {
         cartMapper.insertProduct(cartProducts);
     }
 
+    public void insertSideMenuToCart(CompleteCartRequestDTO completeCartRequestDTO) {
+        String name = completeCartRequestDTO.getName();
+        int totalPrice = completeCartRequestDTO.getPrice();
+        String buyer = completeCartRequestDTO.getBuyer();
+        String productId = completeCartRequestDTO.getProductId();
+
+        cartMapper.insertCompleteProduct(name, totalPrice, buyer, productId);
+    }
+
     public CartResponseDTO getCartList(String nickName) {
 
         List<CompleteCartResponseDTO> completeCartList = cartMapper.getCompleteCartList(nickName);
@@ -65,4 +74,29 @@ public class CartService {
                 .CartProductList(cartProductList)
                 .build();
     }
+
+    public void insertCustomToCart(CustomCartRequestDTO customCartRequestDTO) {
+        CompleteCartRequestDTO completeCart = customCartRequestDTO.getCompleteCartRequestDTO();
+        String name = completeCart.getName();
+        int totalPrice = completeCart.getPrice();
+        String buyer = completeCart.getBuyer();
+        String productId = completeCart.getProductId();
+
+
+        // CompleteCartRequestDTO를 DB에 삽입
+        cartMapper.insertCompleteProduct(name, totalPrice, buyer, productId);
+
+        int id = cartMapper.selectIdByproductId(productId);
+
+        // 2. CustomProductsRequestDTO 리스트 처리
+        List<CustomProductsRequestDTO> customProducts = customCartRequestDTO.getCustomProductsRequestDTO();
+        if (customProducts != null && !customProducts.isEmpty()) {
+            // 각 CustomProductsRequestDTO에 id를 설정
+            customProducts.forEach(product -> product.setId(id));
+
+            // CustomProductsRequestDTO 리스트를 DB에 삽입
+            cartMapper.insertCustomProducts(customProducts);
+        }
+    }
 }
+

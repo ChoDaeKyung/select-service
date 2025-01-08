@@ -46,4 +46,18 @@
         WHERE buyer = #{nickName}
     </select>
 
+    <insert id="insertCustomProducts" parameterType="java.util.List">
+        INSERT INTO productcart(id, name, category, price, buyer)
+        VALUES
+        <foreach collection="list" item="product" separator=",">
+            (
+            #{product.id},
+            #{product.name},
+            #{product.category},
+            #{product.price},
+            #{product.buyer}
+            )
+        </foreach>
+    </insert>
+
 </mapper>

@@ -4,8 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.selectservice.mapper.MenuMapper">
 
-    <select id="getMenuList" resultType="com.example.selectservice.dto.GetMenuListResponseDTO">
+    <select id="getMenuList" resultType="com.example.selectservice.dto.GetCompleteProductsListResponseDTO">
         SELECT name,price,detail,imagePath FROM completeproducts
+    </select>
+
+    <select id="getSideMenuList" resultType="com.example.selectservice.dto.GetSideMenuListResponseDTO">
+        SELECT name,category,price,detail,imagePath FROM sidemenu
+    </select>
+
+    <select id="getSideMenuByCategory" resultType="com.example.selectservice.dto.GetSideMenuListResponseDTO">
+        SELECT name,category,price,detail,imagePath FROM sidemenu WHERE category = #{category}
     </select>
 
     <select id="getProductsByCompleteProduct" resultType="com.example.selectservice.dto.GetDetailProductsDTO">

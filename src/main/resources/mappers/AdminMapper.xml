@@ -9,6 +9,16 @@
         VALUES (#{completeName}, #{price}, #{detail}, #{imagePath})
     </insert>
 
+    <insert id="addProduct" parameterType="com.example.selectservice.dto.AddProductRequestDTO">
+        INSERT INTO products (name, category, price, imagePath)
+        VALUES (#{name}, #{category}, #{price}, #{imagePath})
+    </insert>
+
+    <insert id="addSideMenu" parameterType="com.example.selectservice.dto.AddSideMenuRequestDTO">
+        INSERT INTO sidemenu (name, category, price, detail, imagePath)
+        VALUES (#{name}, #{category}, #{price}, #{detail}, #{imagePath})
+    </insert>
+
     <update id="addUsed" parameterType="com.example.selectservice.dto.UsedUpdateRequestDTO">
         UPDATE products
         SET used = CONCAT(IFNULL(used, ''), IF(used IS NULL OR used = '', '', ','), #{completeName})
