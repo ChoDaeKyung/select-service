@@ -8,6 +8,7 @@ import com.example.selectservice.dto.GetSideMenuListResponseDTO;
 import com.example.selectservice.mapper.MenuMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +21,7 @@ public class MenuService {
     private final MenuMapper menuMapper;
     private final FileClient fileClient;
 
+    @Transactional(readOnly = true)
     public GetMenuListResponseDTO getMenuList() {
         List<GetCompleteProductsListResponseDTO> completeProducts = menuMapper.getMenuList();
         List<GetSideMenuListResponseDTO> sideMenu = menuMapper.getSideMenuList();
@@ -70,6 +72,7 @@ public class MenuService {
 
     }
 
+    @Transactional(readOnly = true)
     public List<GetSideMenuListResponseDTO> getSideMenuByCategory(String category) {
         List<GetSideMenuListResponseDTO> sideMenu = menuMapper.getSideMenuByCategory(category);
 
@@ -90,6 +93,8 @@ public class MenuService {
                         .image(imageList.get(i)) // 매칭된 이미지를 DTO에 설정
                         .build())
                 .collect(Collectors.toList());
+
+        System.out.println("getSideMenuListResponseDTOS: " + getSideMenuListResponseDTOS);
 
 
         return getSideMenuListResponseDTOS;

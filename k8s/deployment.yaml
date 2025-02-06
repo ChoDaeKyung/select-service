@@ -28,6 +28,6 @@ spec:
             - name: BPL_JVM_THREAD_COUNT
               value: "50"
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://polar-mysql:3306/deliveryservice?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8
+              value: jdbc:mysql://mysql-service:3306/deliveryservice?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8
             - name: SPRING_PROFILES_ACTIVE
               value: testdata

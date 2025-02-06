@@ -33,11 +33,15 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'com.mysql:mysql-connector-j'
-	implementation 'org.flywaydb:flyway-mysql'
 //	implementation 'org.springframework.boot:spring-boot-starter-amqp'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+	implementation 'software.amazon.awssdk:s3:2.20.17'
+//	implementation 'software.amazon.awssdk:sqs:2.20.20'
+//	implementation 'io.awspring.cloud:spring-cloud-aws-messaging:3.0.0'
+	implementation platform("io.awspring.cloud:spring-cloud-aws-dependencies:3.0.1")
+	implementation 'io.awspring.cloud:spring-cloud-aws-starter-sqs'
 
 	compileOnly 'org.projectlombok:lombok'
 

@@ -1,8 +1,6 @@
 package com.example.selectservice.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 

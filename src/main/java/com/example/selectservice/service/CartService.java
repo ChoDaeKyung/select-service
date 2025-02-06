@@ -5,6 +5,7 @@ import com.example.selectservice.mapper.CartMapper;
 import com.example.selectservice.mapper.MenuMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class CartService {
     private final CartMapper cartMapper;
     private final MenuMapper menuMapper;
 
+    @Transactional
     public void insertCart(InsertCartRequestDTO insertCartRequestDTO) {
         List<CartProductRequestDTO> allProducts = insertCartRequestDTO.getProductsList();
         String name = insertCartRequestDTO.getName();
@@ -31,6 +33,7 @@ public class CartService {
         cartMapper.insertProduct(allProducts);
     }
 
+    @Transactional
     public void insertCompleteProductToCart(CompleteCartRequestDTO completeCartRequestDTO) {
         String name = completeCartRequestDTO.getName();
         int totalPrice = completeCartRequestDTO.getPrice();
@@ -55,6 +58,7 @@ public class CartService {
         cartMapper.insertProduct(cartProducts);
     }
 
+    @Transactional
     public void insertSideMenuToCart(CompleteCartRequestDTO completeCartRequestDTO) {
         String name = completeCartRequestDTO.getName();
         int totalPrice = completeCartRequestDTO.getPrice();
@@ -64,6 +68,7 @@ public class CartService {
         cartMapper.insertCompleteProduct(name, totalPrice, buyer, productId);
     }
 
+    @Transactional(readOnly = true)
     public CartResponseDTO getCartList(String nickName) {
 
         List<CompleteCartResponseDTO> completeCartList = cartMapper.getCompleteCartList(nickName);
@@ -75,6 +80,7 @@ public class CartService {
                 .build();
     }
 
+    @Transactional
     public void insertCustomToCart(CustomCartRequestDTO customCartRequestDTO) {
         CompleteCartRequestDTO completeCart = customCartRequestDTO.getCompleteCartRequestDTO();
         String name = completeCart.getName();

@@ -7,21 +7,22 @@ server:
       max: 50
       min-spare: 5
   shutdown: graceful
+
 spring:
-  application:
-    name: select-service
-#  rabbitmq:
-#    host: localhost
-#    port: 5672
-#    username: user
-#    password: 1234
-  lifecycle:
-    timeout-per-shutdown-phase: 15s
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/deliveryservice?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&allowPublicKeyRetrieval=true}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 1234
+    replication:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 1234
+      write:
+        name: write
+        url: ${DB_MASTER_URL:jdbc:mysql://localhost:3306/deliveryservice?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8}  # 마스터 DB URL
+      reads:
+        - name: read
+          username: ${DB_SLAVE_NAME:root}
+          password: 1234
+          url: ${DB_SLAVE_URL:jdbc:mysql://localhost:3306/deliveryservice?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8}  # 슬레이브 DB URL
+
     hikari:
       connection-timeout: 2000
       maximum-pool-size: 5
@@ -37,7 +38,12 @@ mybatis:
 swfm:
   file-service-url: ${SELECT_SERVICE_URL:http://localhost:7013}/selectImage
 
-payment:
-  secret-key: base64('')
-  base-url: https://api.tosspayments.com/v1/payments
-  confirm-endpoint: /confirm
+aws:
+  region: ${AWS_REGION:ap-northeast-2}
+  credentials:
+    access-key: ${AWS_ACCESS_KEY_ID}
+    secret-key: ${AWS_SECRET_ACCESS_KEY}
+  s3:
+    bucket-name: img-bucket-2024
+  sqs:
+    queue-name: products

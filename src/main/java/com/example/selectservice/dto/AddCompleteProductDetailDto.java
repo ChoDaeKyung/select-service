@@ -1,11 +1,11 @@
 package com.example.selectservice.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 public class AddCompleteProductDetailDto {
     private String name;

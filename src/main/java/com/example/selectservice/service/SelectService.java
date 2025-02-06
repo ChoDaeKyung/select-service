@@ -8,6 +8,7 @@ import com.example.selectservice.mapper.SelectMapper;
 import com.example.selectservice.model.Products;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +21,7 @@ public class SelectService {
     private final SelectMapper selectMapper;
     private final FileClient fileClient;
 
+    @Transactional
     public void insertSelect(SelectRequestDTO selectRequestDTO) {
         // SelectRequestDTO 안의 모든 ProductRequestDTO를 추출
         List<ProductRequestDTO> allProducts = selectRequestDTO.getProductsList();
@@ -38,6 +40,7 @@ public class SelectService {
         selectMapper.insertSelect(allProducts);
     }
 
+    @Transactional(readOnly = true)
     public List<GetSelectProductResponseDTO> getSelectProducts() {
         List<Products> products = selectMapper.getSelectProducts();
 
